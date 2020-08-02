@@ -1,6 +1,8 @@
 
-sudo apt update
-sudo apt install openssh-server
+sudo apt-get install git
+sudo apt-get install vim
+sudo apt-get update
+sudo apt-get install openssh-server
 
 sudo apt-get update
 sudo apt-get install apt-transport-https \
