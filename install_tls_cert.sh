@@ -149,3 +149,33 @@ openssl req -new -key /tmp/cert/apiserver-kubelet-client.key -subj "/CN=apiserve
 
 #Step25: Sign the csr requested certificate and provide a publick key along with certificate
 openssl x509 -req -days 30 -in /tmp/cert/apiserver-kubelet-client.csr -CA /tmp/cert/ca.crt -CAkey /tmp/cert/ca.key -out /tmp/cert/apiserver-kubelet-client.crt
+
+#Step26: Genereate kube-controller-manager private key
+#Use OPENSSL tool to generate the private key.
+openssl genrsa -out /tmp/cert/kube-controller-manager.key 2048
+
+#Step27: Generate the Certificate signing request.
+openssl req -new -key /tmp/cert/kube-controller-manager.key -subj "/CN=system:kube-controller-manager" -out /tmp/cert/kube-controller-manager.csr
+
+#Step28: Sign the csr requested certificate and provide a publick key along with certificate
+openssl x509 -req -days 30 -in /tmp/cert/kube-controller-manager.csr -CA /tmp/cert/ca.crt -CAkey /tmp/cert/ca.key -out /tmp/cert/kube-controller-manager.crt
+
+#Step29: Genereate kube-scheduler-manager private key
+#Use OPENSSL tool to generate the private key.
+openssl genrsa -out /tmp/cert/kube-scheduler.key 2048
+
+#Step30: Generate the Certificate signing request.
+openssl req -new -key /tmp/cert/kube-scheduler.key -subj "/CN=system:kube-scheduler" -out /tmp/cert/kube-scheduler.csr
+
+#Step31: Sign the csr requested certificate and provide a publick key along with certificate
+openssl x509 -req -days 30 -in /tmp/cert/kube-scheduler.csr -CA /tmp/cert/ca.crt -CAkey /tmp/cert/ca.key -out /tmp/cert/kube-scheduler.crt
+
+#Step32: Genereate kube-admin user private key
+#Use OPENSSL tool to generate the private key.
+openssl genrsa -out /tmp/cert/kube-admin.key 2048
+
+#Step33: Generate the Certificate signing request.
+openssl req -new -key /tmp/cert/kube-admin.key -subj "/CN=admin/O=system:masters" -out /tmp/cert/kube-admin.csr
+
+#Step33: Sign the csr requested certificate and provide a publick key along with certificate
+openssl x509 -req -days 30 -in /tmp/cert/kube-admin.csr -CA /tmp/cert/ca.crt -CAkey /tmp/cert/ca.key -out /tmp/cert/kube-admin.crt
