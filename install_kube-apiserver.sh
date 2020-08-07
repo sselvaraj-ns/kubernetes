@@ -116,10 +116,22 @@ RestartSec=5
 WantedBy=multi-user.target
 EOF
 
-# start a local kube-apiserver server
+# Step17: Start a local kube-apiserver server
 systemctl daemon-reload
 systemctl start kube-apiserver
 systemctl status kube-apiserver
 
-# Step17: To view the system running kube-apiserver process
+# Step18: Verify kubectl able to connect to kube-apiserver.
+# Note: You may be getting authorization error if so its proves kube-apiserver working.
+
+echo -------kubectl get pod------------
+echo "# Note: You may be getting authorization error if so its proves kube-apiserver working"
+echo ----------------------------------
+kubectl get pod \
+--certificate-authority $HOME/cert/ca.crt \
+--client-certificate $HOME/cert/etcd-client.crt \
+--client-key $HOME/cert/etcd-client.key \
+-s https://127.0.0.1:6443
+
+# Step19: To view the system running kube-apiserver process
 #journalctl -u kube-apiserver

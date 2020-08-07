@@ -33,4 +33,6 @@ kubectl config use-context default \
 --kubeconfig=$HOME/.kube/kube-admin.kubeconfig
 
 # Step5: To view the system:kube-admin-manager kubeconfig
+echo -------kubectl config view--------
+echo ----------------------------------
 kubectl config view --kubeconfig=$HOME/.kube/kube-admin.kubeconfig

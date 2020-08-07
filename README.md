@@ -16,7 +16,7 @@ Step4: Install/Configure Master as a Root CA server for certifications creation 
 sh install_ca_server.sh  
 
 Step5: Add the bellow env   
-SERVER_IP=<MASTER-HOST-IP>  
+SERVER_IP=MASTER-HOST-IP  
 SERVER_IP=$(ip addr show | grep -v '127.0\|172.17' | grep -oP '(?<=inet\s)\d+(\.\d+){3}')  
 
 Step6: Download and install ETCD binaries  

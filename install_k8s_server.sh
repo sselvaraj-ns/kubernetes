@@ -12,4 +12,5 @@ rm -f $HOME/kubernetes-server-linux-amd64.tar.gz
 
 # Verify the kubectl installation.
 echo ------verfiying the kubectl installation-----
+echo ---------------------------------------------
 $HOME/kubernetes-server/kubernetes/server/bin/kubectl version

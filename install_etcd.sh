@@ -82,6 +82,7 @@ sudo cp $HOME/etcd-download-test/etcdctl /usr/bin/
 
 # Step12: Verify the etcd 
 echo ------verfiying the etcd installation-----
+echo ------------------------------------------
 etcd --version
 etcdctl version
 
