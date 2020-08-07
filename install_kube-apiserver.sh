@@ -125,7 +125,7 @@ systemctl status kube-apiserver
 # Note: You may be getting authorization error if so its proves kube-apiserver working.
 
 echo -------kubectl get pod------------
-echo "# Note: You may be getting authorization error if so its proves kube-apiserver working"
+echo "# Note: You may be getting authorization/Forbidden error if so its proves kube-apiserver working"
 echo ----------------------------------
 kubectl get pod \
 --certificate-authority $HOME/cert/ca.crt \

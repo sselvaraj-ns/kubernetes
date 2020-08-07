@@ -31,10 +31,12 @@ sh install_kube-apiserver.sh
 Step8: Installing kube-controller-manger  
 sh install_kube-controller-manager.sh
 
-Step9: Installing kube-scheduler  
+Step9: Add Kube-admin kubeconfig  
+sh install_kube-admin.sh
+
+Step10: Installing kube-scheduler  
 sh install_kube-scheduler.sh
 
-Step10: Add Kube-admin kubeconfig  
-sh install kube-admin.sh
+
 
 
