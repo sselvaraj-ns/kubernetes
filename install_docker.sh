@@ -1,3 +1,4 @@
+# This will install docker and other pre-request before starting kubernetes installation
 
 sudo apt-get install git
 sudo apt-get install vim
