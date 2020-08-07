@@ -117,13 +117,15 @@ systemctl status etcd
 #$HOME/etcd-download-test/etcd
 
 # Step15: write,read to etcd
-echo -------ETCD PUT and GET-----------
+echo -------ETCD PUT-------------------
 echo ----------------------------------
 etcdctl --endpoints=https://127.0.0.1:2379 put foo bar \
  --cacert=$HOME/cert/ca.crt \
  --cert=$HOME/cert/etcd-client.crt \
  --key=$HOME/cert/etcd-client.key
 
+echo -------ETCD GET-------------------
+echo ----------------------------------
 etcdctl --endpoints=https://127.0.0.1:2379 get foo \
  --cacert=$HOME/cert/ca.crt \
  --cert=$HOME/cert/etcd-client.crt \
