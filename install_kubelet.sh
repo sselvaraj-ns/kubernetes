@@ -50,9 +50,8 @@ openssl x509 -req -days 100 -in $HOME/cert/kubelet.csr \
 -extensions v3_req \
 -extfile $HOME/cert/kubelet.cnf
 
-
+# Step6: Copy the certificate and key to worker node
 #scp kubelet.crt anna@192.168.1.15:/home/anna/cert
-
 #scp kubelet.key anna@192.168.1.15:/home/anna/cert
 
 
