@@ -50,12 +50,12 @@ openssl x509 -req -days 100 -in $HOME/cert/kubelet.csr \
 -extensions v3_req \
 -extfile $HOME/cert/kubelet.cnf
 
-
+# Step6: Copy the certificate and key files from Master to Worker node
 #scp kubelet.crt anna@192.168.1.15:/home/anna/cert
 
 #scp kubelet.key anna@192.168.1.15:/home/anna/cert
 
-
+# Step6: Create Kubelet configuration file
 cat <<EOF | sudo tee /home/anna/kubelet/kubelet-config.yaml
 apiVersion: kubelet.config.k8s.io/v1beta1
 kind: KubeletConfiguration
@@ -74,33 +74,33 @@ clusterDomain: cluster.local
 runtimeRequestTimeout: "5m"
 EOF
 
-
-# Step5.1: Adding kube-controller manager cluster info
+# Step7: Create Kube config file for kubelet
+# Step7.1: Adding kubelet cluster info
 kubectl config set-cluster k8s_hard \
 --certificate-authority=$HOME/cert/ca.crt \
 --embed-certs=true \
 --server=https://192.168.1.14:6443 \
 --kubeconfig=$HOME/.kube/kubelet.kubeconfig
 
-# Step5.2: Adding kube-controller manager cluster info
+# Step7.2: Adding kubelet cluster info
 kubectl config set-credentials system:node:anna-worker \
 --client-certificate=$HOME/cert/kubelet.crt \
 --client-key=$HOME/cert/kubelet.key \
 --embed-certs=true \
 --kubeconfig=$HOME/.kube/kubelet.kubeconfig
 
-# Step5.3: Adding kube-controller manager context
+# Step7.3: Adding kubelet context
 kubectl config set-context default \
 --user=system:node:anna-worker \
 --cluster=k8s_hard \
 --kubeconfig=$HOME/.kube/kubelet.kubeconfig
 
-# Step5.4: To add the default context
+# Step7.4: To add the default context
 kubectl config use-context default \
 --kubeconfig=$HOME/.kube/kubelet.kubeconfig
 
 
-
+# Step8: Create systemd file for kubelet service
 cat <<EOF | sudo tee /etc/systemd/system/kubelet.service
 [Unit]
 Description=kubelet
